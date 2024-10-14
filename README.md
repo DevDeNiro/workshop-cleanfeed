@@ -10,7 +10,7 @@ CleanFeed est une application web monopage (SPA) conçue pour aider les utilisat
   - [ ] : Filtres par Comptes Utilisateurs
   - [ ] : Filtres par Catégories de Contenu
 - [ ] : Filtrage Rétroactif du Flux
-- [ ] : Tableau de Bord Éducatif
+- [ ] : Tableau de Bord (éducatif)
 
 ## Devlopement 
 
