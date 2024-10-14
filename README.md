@@ -1,13 +1,22 @@
-# react-cloud-starter-kit
+# CleanFeed SPA - Améliorez votre Expérience sur les Réseaux Sociaux (under development)
 
-This template provide a minimal Hello World application to get React ready working in Vite with HMR, TypeScript 5.4,
-Styled components, react-router v6, some ESLint rules,
-Redux state manager and all the required configuration to deploy it to the cloud ☁️☁️☁️.
+CleanFeed est une application web monopage (SPA) conçue pour aider les utilisateurs à assainir leur expérience sur les réseaux sociaux en filtrant le contenu nuisible de leur flux. Sans besoin de backend, l’application se connecte directement à votre compte via OAuth2 et offre des fonctionnalités de filtrage personnalisables ainsi qu’une valeur éducative à travers un tableau de bord interactif.
 
-## Atomic Design Methodology 🎨
+## Features 
 
-The approach used in this project is based on the Atomic Design methodology (components based), which is a framework for
-creating design systems. You can find more information on
-the [blog of Brad Frost](https://atomicdesign.bradfrost.com/chapter-2/)
+- [ ] : Connexion Sécurisée via OAuth2
+- [ ] : Filtrage Personnalisable du Contenu
+  - [ ] : Filtres par Mots-clés (Tags)
+  - [ ] :
+- [ ] : Filtrage Rétroactif du Flux
+- [ ] : Tableau de Bord Éducatif
+
+
+## Devlopement 
+
+```
+pnpm i
+npm run dev
+```
 
 ## Deployment 🚀 (to complete)
