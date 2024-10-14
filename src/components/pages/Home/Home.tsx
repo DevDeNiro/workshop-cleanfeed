@@ -1,4 +1,4 @@
-import { User } from "oidc-client-ts";
+import { User } from "firebase/auth";
 import { FC } from "react";
 import { HomeWrapper } from "@components/pages/Home/Home.styled.tsx";
 import { FormattedMessage } from "react-intl";
@@ -8,9 +8,6 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ user }) => {
-    // TODO: Implement the keycloak state
-    // const keycloack = useSelector((state: any) => state.keycloak);
-
     return (
         <HomeWrapper>
             <h1>
@@ -29,7 +26,7 @@ const Home: FC<HomeProps> = ({ user }) => {
                     }}
                 />
             </h2>
-            {user && <h3>{user.profile.name}</h3>}
+            {user && <h3>{user.email}</h3>}
         </HomeWrapper>
     );
 };

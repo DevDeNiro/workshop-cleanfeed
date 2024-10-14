@@ -1,5 +1,4 @@
 // External imports
-import { useAuth } from "react-oidc-context";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Local imports
 import "./App.css";
@@ -8,9 +7,12 @@ import Error from "@pages/Error/Error.tsx";
 import MainLayout from "@organisms/MainLayout.tsx";
 import Login from "@pages/Login/Login.tsx";
 import Profile from "@pages/Profile/Profile.tsx";
+import { auth } from "@utils/auth/firebaseConfig.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/store.ts";
 
 function App() {
-    const auth = useAuth();
+    const user = useSelector((state: RootState) => state.firebase.user);
 
     const router = createBrowserRouter([
         {
@@ -18,8 +20,8 @@ function App() {
             element: <MainLayout />,
             errorElement: <Error />,
             children: [
-                { path: "/", element: <Home user={auth.user} /> },
-                { path: "/profile", element: <Profile user={auth.user} /> },
+                { path: "/", element: <Home user={user} /> },
+                { path: "/profile", element: <Profile user={user} /> },
                 { path: "/auth/oauth2/login", element: <Login auth={auth} /> },
             ],
         },

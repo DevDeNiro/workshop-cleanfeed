@@ -1,6 +1,6 @@
 // Extern
 import { ChangeEvent, FC } from "react";
-import { User } from "oidc-client-ts";
+import { User } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
     FormattedMessage,
@@ -12,11 +12,11 @@ import reactLogo from "@assets/react.svg";
 // Intern
 import { RootState } from "@redux/store.ts";
 import Select from "@components/atoms/Select/Select.tsx";
-import NavbarStyled from "@components/molecules/Navbar/Navbar.styled.tsx";
 import NavItem from "@components/atoms/NavItem/NavItem.tsx";
 import Button from "@components/atoms/Button/Button.tsx";
-import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import BurgerButton from "@components/atoms/BurgerButton/BurgerButton.tsx";
+import NavbarStyled from "@components/molecules/Navbar/Navbar.styled.tsx";
+import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import { selectOptions } from "@utils/selectTranslationValues.ts";
 import { toggleVerticalMenu } from "@redux/menu/menuSlice.ts";
 
@@ -32,19 +32,21 @@ const Navbar: FC<NavbarProps> = ({
     handleLogout,
     handleLogin,
     intl,
-    user,
     isAuthenticated,
 }) => {
+    const dispatch = useDispatch();
     const intlState = useSelector((state: RootState) => state.intl);
     const menuState = useSelector(
         (state: RootState) => state.menu.showVerticalMenu,
     );
-
-    const dispatch = useDispatch();
-
     const handleShowMenu = () => {
         dispatch(toggleVerticalMenu(!menuState));
     };
+
+    const { user, loading } = useSelector((state: RootState) => state.firebase);
+    if (user) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <NavbarStyled role={"navigation"}>
@@ -97,6 +99,7 @@ const Navbar: FC<NavbarProps> = ({
                         expanded={false}
                         logout={false}
                         handleClick={handleLogin}
+                        disabled={loading}
                     >
                         <FormattedMessage
                             id={"app.header.login"}
