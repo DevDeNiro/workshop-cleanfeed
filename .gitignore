@@ -1,0 +1,21 @@
+# Project directories
+node_modules
+dist
+logs
+coverage
+storybook-static/
+.env
+
+# Chart
+charts/charts/*.tgz
+*.local
+
+# Editor directories and files
+.DS_Store
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*storybook.log
