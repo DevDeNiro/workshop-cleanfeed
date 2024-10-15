@@ -1,5 +1,6 @@
-import axiosClient from "@api/axiosClient.ts";
+// import axiosClient from "@api/axiosClient.ts";
 
+/*
 export async function getUserTweets(userId: string) {
     try {
         const response = await axiosClient.get(`/users/${userId}/tweets`, {
@@ -30,3 +31,6 @@ export async function getTweetReplies(tweetId: string) {
         throw error;
     }
 }
+
+
+ */

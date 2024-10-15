@@ -7,7 +7,7 @@ import {
     injectIntl,
     WrappedComponentProps,
 } from "react-intl";
-import logo from "@assets/Logo Marketing Agency Digital..svg";
+import logo from "@assets/logo.svg";
 
 // Intern
 import { RootState } from "@redux/store.ts";
@@ -43,7 +43,7 @@ const Navbar: FC<NavbarProps> = ({
         dispatch(toggleVerticalMenu(!menuState));
     };
 
-    const { user, loading } = useSelector((state: RootState) => state.firebase);
+    const { user } = useSelector((state: RootState) => state.firebase);
 
     const userStatusMessage = intl.formatMessage({
         id: user ? "app.header.status.loggedIn" : "app.header.status.loggedOut",
@@ -91,7 +91,6 @@ const Navbar: FC<NavbarProps> = ({
                         expanded={false}
                         logout={false}
                         handleClick={handleLogin}
-                        disabled={loading}
                     >
                         <FormattedMessage
                             id={"app.header.login"}
@@ -123,7 +122,7 @@ const Navbar: FC<NavbarProps> = ({
                 <BurgerButton
                     handleShowMenu={handleShowMenu}
                     hasPopup={true}
-                    expanded={menuState.showVerticalMenu}
+                    expanded={menuState}
                 />
             </div>
         </NavbarStyled>

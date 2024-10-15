@@ -12,4 +12,8 @@ export const store = configureStore({
     },
 });
 
+// Type de l'état du store global
 export type RootState = ReturnType<typeof store.getState>;
+
+// Type correct pour utiliser des actions async avec le useDispatch hook
+export type AppDispatch = typeof store.dispatch;

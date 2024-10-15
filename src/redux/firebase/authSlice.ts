@@ -5,15 +5,19 @@ import { loginWithTwitter, logoutUser } from "@redux/firebase/authActions.ts";
 type AuthState = {
     user: User | null;
     isLoggedIn: boolean;
-    loading: boolean;
-    error: null | string;
+    loginLoading: boolean;
+    logoutLoading: boolean;
+    loginError: null | string;
+    logoutError: null | string;
 };
 
 const initialState: AuthState = {
     user: null,
     isLoggedIn: false,
-    loading: false,
-    error: null,
+    loginLoading: false,
+    logoutLoading: false,
+    loginError: null,
+    logoutError: null,
 };
 
 const authSlice = createSlice({
@@ -29,31 +33,39 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(loginWithTwitter.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.loginLoading = true;
+                state.loginError = null;
             })
             .addCase(
                 loginWithTwitter.fulfilled,
-                (state, action: PayloadAction<User>) => {
-                    state.loading = false;
-                    state.user = action.payload;
+                (state, action: PayloadAction<User | undefined>) => {
+                    if (action.payload) {
+                        state.user = action.payload;
+                        state.isLoggedIn = true;
+                        state.loginError = null; // Reset de l'erreur
+                    } else {
+                        state.user = null;
+                        state.isLoggedIn = false;
+                        state.loginError = "Failed to log in.";
+                    }
                 },
             )
             .addCase(loginWithTwitter.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string;
+                state.loginLoading = false;
+                state.loginError = action.payload as string;
             })
             .addCase(logoutUser.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.loginLoading = true;
+                state.logoutError = null;
             })
             .addCase(logoutUser.fulfilled, (state) => {
-                state.loading = false;
+                state.logoutLoading = false;
                 state.user = null;
+                state.isLoggedIn = false;
             })
             .addCase(logoutUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string;
+                state.logoutLoading = false;
+                state.logoutError = action.payload as string;
             });
     },
 });

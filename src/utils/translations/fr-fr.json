@@ -8,7 +8,7 @@
     "app.header.status": "Vous êtes {userStatus}",
     "app.header.status.loggedIn": "connecté",
     "app.header.status.loggedOut": "déconnecté",
-    "app.header.login": "Se connecter avec {loginMode}",
+    "app.header.login": "Se connecter à {loginMode}",
     "app.header.logout": "Se déconnecter",
     "app.header.home": "Accueil",
     "app.header.profile": "Profil",

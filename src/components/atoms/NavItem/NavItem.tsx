@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 export interface NavItemProps {
     translationKey: string;
     linkTo: string;
-    onNavItemClick: () => void;
+    onNavItemClick?: () => void;
 }
 
 const NavItem: React.FC<NavItemProps> = ({

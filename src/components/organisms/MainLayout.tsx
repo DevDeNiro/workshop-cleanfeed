@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@redux/store.ts";
+import { AppDispatch, RootState } from "@redux/store.ts";
 import { toggleVerticalMenu } from "@redux/menu/menuSlice";
 import Navbar from "@molecules/Navbar/Navbar.tsx";
 import VerticalMenu from "@molecules/VerticalMenu/VerticalMenu.tsx";
@@ -25,8 +25,11 @@ const StyledPage = styled.div`
 `;
 
 const MainLayout: FC = () => {
-    const dispatch = useDispatch();
-    const { user, loading } = useSelector((state: RootState) => state.firebase);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const { user, isLoggedIn } = useSelector(
+        (state: RootState) => state.firebase,
+    );
     const menuState = useSelector(
         (state: RootState) => state.menu.showVerticalMenu,
     );
@@ -57,13 +60,11 @@ const MainLayout: FC = () => {
     return (
         <StyledPage>
             <Navbar
-                handleShowMenu={() =>
-                    dispatch(toggleVerticalMenu(!menuState.showVerticalMenu))
-                }
+                handleShowMenu={() => dispatch(toggleVerticalMenu(!menuState))}
                 handleLogin={handleLogin}
                 handleLogout={handleLogout}
                 user={user}
-                isAuthenticated={loading}
+                isAuthenticated={isLoggedIn}
             />
 
             <VerticalMenu
@@ -72,7 +73,7 @@ const MainLayout: FC = () => {
                 handleLogout={handleLogout}
                 user={user}
                 className={menuState ? "visible" : "hidden"}
-                isAuthenticated={loading}
+                isAuthenticated={isLoggedIn}
             />
             <Outlet />
         </StyledPage>

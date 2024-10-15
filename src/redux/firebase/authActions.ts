@@ -11,9 +11,12 @@ export const loginWithTwitter = createAsyncThunk(
             return user;
         } catch (error: unknown) {
             if (error instanceof Error) {
-                console.error("Login failed with error:", error);
+                let errorMessage = "An unknown error occurred";
+                if (error.name === "auth/network-request-failed") {
+                    errorMessage = "Network error. Please try again later.";
+                }
                 return rejectWithValue(
-                    error.message || "An unknown error occurred",
+                    errorMessage || "An unknown error occurred",
                 );
             }
         }

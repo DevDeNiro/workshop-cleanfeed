@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import Input from "@atoms/Input/Input.tsx";
 import Button from "@atoms/Button/Button.tsx";
 
@@ -20,7 +20,9 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
             <Input
                 placeholder="Mots clefs"
                 value={keyword}
-                onChange={(e: React.ChangeEvent) => setKeyword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setKeyword(e.target.value)
+                }
             />
             <Button label="POST" handleClick={handleSearch}>
                 Rechercher

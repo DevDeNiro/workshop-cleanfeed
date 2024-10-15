@@ -18,22 +18,23 @@ import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import { selectOptions } from "@utils/selectTranslationValues.ts";
 
 export interface VerticalMenuProps extends WrappedComponentProps {
-    onMenuItemClick: () => void;
     handleLogin: () => void;
     handleLogout: () => void;
     isAuthenticated: boolean;
     user?: User | null;
     className?: string;
+    handleShowMenu?: () => void;
+    onMenuItemClick?: () => void;
 }
 
 const VerticalMenu: FC<VerticalMenuProps> = ({
-    onMenuItemClick,
     handleLogin,
     handleLogout,
     isAuthenticated,
     intl,
     user,
     className,
+    onMenuItemClick,
 }) => {
     const verticalMenuRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +46,7 @@ const VerticalMenu: FC<VerticalMenuProps> = ({
     const dispatch = useDispatch();
 
     return (
-        <VerticalMenuStyled className={className} ref={verticalMenuRef}>
+        <VerticalMenuStyled className={className ?? ""} ref={verticalMenuRef}>
             <div className="vertical-menu-content">
                 <FormattedMessage
                     id={"app.header.title"}
@@ -64,24 +65,26 @@ const VerticalMenu: FC<VerticalMenuProps> = ({
                 <NavItem
                     translationKey={"app.header.home"}
                     linkTo={"/"}
-                    onClick={onMenuItemClick}
+                    onNavItemClick={onMenuItemClick}
                 />
                 {user && (
                     <NavItem
                         translationKey={"app.header.profile"}
                         linkTo={"/profile"}
-                        onClick={onMenuItemClick}
+                        onNavItemClick={onMenuItemClick}
                     />
                 )}
                 {/* Add button to Log in and Log out*/}
                 {!user && !isAuthenticated && (
                     <Button
                         hasPopup={true}
-                        expanded={menuState.showVerticalMenu}
+                        expanded={menuState}
                         logout={false}
                         handleClick={() => {
                             handleLogin();
-                            onMenuItemClick();
+                            if (onMenuItemClick) {
+                                onMenuItemClick();
+                            }
                         }}
                     >
                         <FormattedMessage
@@ -94,11 +97,13 @@ const VerticalMenu: FC<VerticalMenuProps> = ({
                 {user && (
                     <Button
                         hasPopup={false}
-                        expanded={menuState.showVerticalMenu}
+                        expanded={menuState}
                         logout={true}
                         handleClick={() => {
                             handleLogout();
-                            onMenuItemClick();
+                            if (onMenuItemClick) {
+                                onMenuItemClick();
+                            }
                         }}
                     >
                         <FormattedMessage id={"app.header.logout"} />

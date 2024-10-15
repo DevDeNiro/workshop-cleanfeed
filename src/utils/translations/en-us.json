@@ -8,7 +8,7 @@
     "app.header.status": "You are {userStatus}",
     "app.header.status.loggedIn": "logged in",
     "app.header.status.loggedOut": "logged out",
-    "app.header.login": "Login with {loginMode}",
+    "app.header.login": "Login to {loginMode}",
     "app.header.logout": "Logout",
     "app.header.home": "Home",
     "app.header.profile": "Profile",

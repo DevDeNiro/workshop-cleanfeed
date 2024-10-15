@@ -1,6 +1,29 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, TwitterAuthProvider } from "firebase/auth";
-// import firebase from "firebase/compat";
+
+if (!import.meta.env.VITE_FIREBASE_API_KEY) {
+    throw new Error("Missing VITE_FIREBASE_API_KEY env variable");
+}
+
+if (!import.meta.env.VITE_FIREBASE_AUTH_DOMAIN) {
+    throw new Error("Missing VITE_FIREBASE_AUTH_DOMAIN env variable");
+}
+
+if (!import.meta.env.VITE_FIREBASE_PROJECT_ID) {
+    throw new Error("Missing VITE_FIREBASE_PROJECT_ID env variable");
+}
+
+if (!import.meta.env.VITE_FIREBASE_STORAGE_BUCKET) {
+    throw new Error("Missing VITE_FIREBASE_STORAGE_BUCKET env variable");
+}
+
+if (!import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID) {
+    throw new Error("Missing VITE_FIREBASE_MESSAGING_SENDER_ID env variable");
+}
+
+if (!import.meta.env.VITE_FIREBASE_APP_ID) {
+    throw new Error("Missing VITE_FIREBASE_APP_ID env variable");
+}
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY as string,
@@ -11,8 +34,6 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
-
-console.log("firebaseConfig", firebaseConfig);
 
 // Initialisation Firebase
 const app = initializeApp(firebaseConfig);
