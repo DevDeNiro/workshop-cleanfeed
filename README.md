@@ -1,4 +1,4 @@
-# CleanFeed - Améliorez votre Expérience sur les Réseaux Sociaux (under development)
+# CleanFeed - Améliorez votre Expérience sur les Réseaux Sociaux
 
 CleanFeed est une application web monopage (SPA) conçue pour aider les utilisateurs à assainir leur expérience sur les réseaux sociaux en filtrant le contenu nuisible de leur flux. Sans besoin de backend, l’application se connecte directement à votre compte via OAuth2 et offre des fonctionnalités de filtrage personnalisables ainsi qu’une valeur éducative à travers un tableau de bord interactif.
 
