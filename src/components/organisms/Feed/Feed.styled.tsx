@@ -7,4 +7,13 @@ export const FeedWrapper = styled.div`
     border: 1px solid #000000;
     border-radius: 5px;
     padding: 1rem;
+    width: 100%;
+    height: auto;
+`;
+
+
+export const CustomScroll = styled.div`
+    width: 900px;
+    height: 92vh;
+    overflow-y: scroll;
 `;
