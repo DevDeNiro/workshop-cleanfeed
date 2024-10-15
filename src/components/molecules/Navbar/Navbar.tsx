@@ -44,7 +44,6 @@ const Navbar: FC<NavbarProps> = ({
     };
 
     const { user, loading } = useSelector((state: RootState) => state.firebase);
-    console.log("user", user);
     if (user) {
         return <div>Loading...</div>;
     }
