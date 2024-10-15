@@ -1,22 +1,22 @@
 // Extern
 import { ChangeEvent, FC } from "react";
-import { User } from "oidc-client-ts";
+import { User } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
     FormattedMessage,
     injectIntl,
     WrappedComponentProps,
 } from "react-intl";
-import reactLogo from "@assets/react.svg";
+import logo from "@assets/Logo Marketing Agency Digital..svg";
 
 // Intern
 import { RootState } from "@redux/store.ts";
 import Select from "@components/atoms/Select/Select.tsx";
-import NavbarStyled from "@components/molecules/Navbar/Navbar.styled.tsx";
 import NavItem from "@components/atoms/NavItem/NavItem.tsx";
 import Button from "@components/atoms/Button/Button.tsx";
-import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import BurgerButton from "@components/atoms/BurgerButton/BurgerButton.tsx";
+import NavbarStyled from "@components/molecules/Navbar/Navbar.styled.tsx";
+import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import { selectOptions } from "@utils/selectTranslationValues.ts";
 import { toggleVerticalMenu } from "@redux/menu/menuSlice.ts";
 
@@ -32,19 +32,22 @@ const Navbar: FC<NavbarProps> = ({
     handleLogout,
     handleLogin,
     intl,
-    user,
     isAuthenticated,
 }) => {
+    const dispatch = useDispatch();
     const intlState = useSelector((state: RootState) => state.intl);
     const menuState = useSelector(
         (state: RootState) => state.menu.showVerticalMenu,
     );
-
-    const dispatch = useDispatch();
-
     const handleShowMenu = () => {
         dispatch(toggleVerticalMenu(!menuState));
     };
+
+    const { user, loading } = useSelector((state: RootState) => state.firebase);
+
+    const userStatusMessage = intl.formatMessage({
+        id: user ? "app.header.status.loggedIn" : "app.header.status.loggedOut",
+    });
 
     return (
         <NavbarStyled role={"navigation"}>
@@ -55,7 +58,7 @@ const Navbar: FC<NavbarProps> = ({
                     aria-label={"Logo"}
                     className={"logo-wrapper"}
                 >
-                    <img src={reactLogo} alt={"Logo"} />
+                    <img src={logo} alt={"Logo"} />
                 </div>
 
                 <span>
@@ -78,17 +81,8 @@ const Navbar: FC<NavbarProps> = ({
                 <span>
                     <FormattedMessage
                         id={"app.header.status"}
-                        values={{
-                            // status: isAuthenticated ? intlState.messages["app.header.logged"] : intlState.messages["app.header.notLogged"]
-                            userStatus: intl.formatMessage({
-                                id: user
-                                    ? "app.header.status.loggedIn"
-                                    : "app.header.status.loggedOut",
-                                defaultMessage: user
-                                    ? "Logged in"
-                                    : "Logged out",
-                            }),
-                        }}
+                        defaultMessage={"Status: {userStatus}"}
+                        values={{ userStatus: userStatusMessage }}
                     />
                 </span>
                 {!user && !isAuthenticated && (
@@ -97,10 +91,11 @@ const Navbar: FC<NavbarProps> = ({
                         expanded={false}
                         logout={false}
                         handleClick={handleLogin}
+                        disabled={loading}
                     >
                         <FormattedMessage
                             id={"app.header.login"}
-                            values={{ loginMode: "OAuth2" }}
+                            values={{ loginMode: "Twitter" }}
                         />
                     </Button>
                 )}

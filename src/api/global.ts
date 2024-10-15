@@ -1,9 +1,9 @@
 import axiosClient from "@api/axiosClient.ts";
 
-export async function getKeycloak() {
+export async function getSample() {
     try {
         const response = await axiosClient("http://localhost:8080").get(
-            "/keycloak",
+            "/sample",
         );
         console.log(response.data);
         return response.data;

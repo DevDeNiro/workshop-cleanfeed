@@ -1,23 +1,31 @@
 // Extern
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import { IntlProvider } from "react-intl";
-import { AuthProvider } from "react-oidc-context";
-import React from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { onAuthStateChanged, User } from "firebase/auth";
 // Intern
-import oidcConfig from "@utils/auth/oidcConfig.ts";
 import { RootState } from "../redux/store.ts";
+import { auth } from "@utils/auth/firebaseConfig.ts";
+import { setUser } from "@redux/firebase/authSlice.ts";
 
 type WrapperProps = {
     children: React.ReactNode;
 };
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
+    const dispatch = useDispatch();
     const intlState = useSelector((state: RootState) => state.intl);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+            dispatch(setUser(user));
+        });
+        return () => unsubscribe();
+    }, [dispatch]);
 
     return (
         <IntlProvider locale={intlState.locale} messages={intlState.messages}>
-            <AuthProvider {...oidcConfig}> {children} </AuthProvider>
+            {children}
         </IntlProvider>
     );
 };

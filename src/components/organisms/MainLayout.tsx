@@ -5,9 +5,9 @@ import { RootState } from "@redux/store.ts";
 import { toggleVerticalMenu } from "@redux/menu/menuSlice";
 import Navbar from "@molecules/Navbar/Navbar.tsx";
 import VerticalMenu from "@molecules/VerticalMenu/VerticalMenu.tsx";
-import { useAuth } from "react-oidc-context";
 import styled from "styled-components";
 import VerticalMenuStyled from "@molecules/VerticalMenu/VerticalMenu.styled.tsx";
+import { loginWithTwitter, logoutUser } from "@redux/firebase/authActions.ts";
 
 const StyledPage = styled.div`
     width: 100%;
@@ -24,19 +24,19 @@ const StyledPage = styled.div`
 `;
 
 const MainLayout: FC = () => {
-    const auth = useAuth();
     const dispatch = useDispatch();
+    const { user, loading } = useSelector((state: RootState) => state.firebase);
     const menuState = useSelector(
         (state: RootState) => state.menu.showVerticalMenu,
     );
 
-    function handleLogin() {
-        return auth.signinRedirect();
-    }
+    const handleLogin = () => {
+        dispatch(loginWithTwitter());
+    };
 
-    function handleLogout() {
-        return auth.signoutRedirect();
-    }
+    const handleLogout = () => {
+        dispatch(logoutUser());
+    };
 
     useEffect(() => {
         function handleWindowResize() {
@@ -61,19 +61,18 @@ const MainLayout: FC = () => {
                 }
                 handleLogin={handleLogin}
                 handleLogout={handleLogout}
-                user={auth.user}
-                isAuthenticated={auth.isLoading}
+                user={user}
+                isAuthenticated={loading}
             />
 
             <VerticalMenu
                 handleShowMenu={() => dispatch(toggleVerticalMenu(false))}
                 handleLogin={handleLogin}
                 handleLogout={handleLogout}
-                user={auth.user}
+                user={user}
                 className={menuState ? "visible" : "hidden"}
-                isAuthenticated={auth.isLoading}
+                isAuthenticated={loading}
             />
-
             <Outlet />
         </StyledPage>
     );
