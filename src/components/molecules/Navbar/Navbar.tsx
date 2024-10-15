@@ -44,9 +44,14 @@ const Navbar: FC<NavbarProps> = ({
     };
 
     const { user, loading } = useSelector((state: RootState) => state.firebase);
+    console.log("user", user);
     if (user) {
         return <div>Loading...</div>;
     }
+
+    const userStatusMessage = intl.formatMessage({
+        id: user ? "app.header.status.loggedIn" : "app.header.status.loggedOut",
+    });
 
     return (
         <NavbarStyled role={"navigation"}>
@@ -80,17 +85,8 @@ const Navbar: FC<NavbarProps> = ({
                 <span>
                     <FormattedMessage
                         id={"app.header.status"}
-                        values={{
-                            // status: isAuthenticated ? intlState.messages["app.header.logged"] : intlState.messages["app.header.notLogged"]
-                            userStatus: intl.formatMessage({
-                                id: user
-                                    ? "app.header.status.loggedIn"
-                                    : "app.header.status.loggedOut",
-                                defaultMessage: user
-                                    ? "Logged in"
-                                    : "Logged out",
-                            }),
-                        }}
+                        defaultMessage={"Status: {userStatus}"}
+                        values={{ userStatus: userStatusMessage }}
                     />
                 </span>
                 {!user && !isAuthenticated && (

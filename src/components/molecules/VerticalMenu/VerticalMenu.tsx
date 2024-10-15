@@ -4,7 +4,7 @@ import {
     injectIntl,
     WrappedComponentProps,
 } from "react-intl";
-import { User } from "oidc-client-ts";
+import { User } from "firebase/auth";
 import { ChangeEvent, FC, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

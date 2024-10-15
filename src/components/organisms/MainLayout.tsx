@@ -5,7 +5,6 @@ import { RootState } from "@redux/store.ts";
 import { toggleVerticalMenu } from "@redux/menu/menuSlice";
 import Navbar from "@molecules/Navbar/Navbar.tsx";
 import VerticalMenu from "@molecules/VerticalMenu/VerticalMenu.tsx";
-// import {useAuth} from "react-oidc-context";
 import styled from "styled-components";
 import VerticalMenuStyled from "@molecules/VerticalMenu/VerticalMenu.styled.tsx";
 import { loginWithTwitter, logoutUser } from "@redux/firebase/authActions.ts";
@@ -31,6 +30,8 @@ const MainLayout: FC = () => {
     );
 
     const { user, loading } = useSelector((state: RootState) => state.firebase);
+
+    console.log("user", user);
 
     const handleLogin = () => {
         dispatch(loginWithTwitter());

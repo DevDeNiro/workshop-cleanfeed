@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, TwitterAuthProvider } from "firebase/auth";
+// import firebase from "firebase/compat";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY as string,
@@ -10,6 +11,8 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
+console.log("firebaseConfig", firebaseConfig);
 
 // Initialisation Firebase
 const app = initializeApp(firebaseConfig);

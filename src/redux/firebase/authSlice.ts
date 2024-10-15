@@ -3,12 +3,14 @@ import { User } from "firebase/auth";
 
 type AuthState = {
     user: User | null;
+    isLoggedIn: boolean;
     loading: boolean;
     error: null | string;
 };
 
 const initialState: AuthState = {
     user: null,
+    isLoggedIn: false,
     loading: false,
     error: null,
 };
@@ -21,6 +23,7 @@ const authSlice = createSlice({
             state.loading = true;
         },
         loginSuccess(state, action: PayloadAction<User>) {
+            console.log("Login success, user:", action.payload);
             state.loading = false;
             state.user = action.payload;
         },
