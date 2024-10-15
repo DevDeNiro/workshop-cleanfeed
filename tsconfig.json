@@ -34,7 +34,7 @@
             "@pages/*": ["./src/components/pages/*"]
         }
     },
-    "include": ["src"],
+    "include": ["src"]
     /*
         "references": [
             {"path": "./tsconfig.app.json"},
