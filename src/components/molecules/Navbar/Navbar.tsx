@@ -7,7 +7,7 @@ import {
     injectIntl,
     WrappedComponentProps,
 } from "react-intl";
-import reactLogo from "@assets/react.svg";
+import logo from "@assets/Logo Marketing Agency Digital..svg";
 
 // Intern
 import { RootState } from "@redux/store.ts";
@@ -44,9 +44,6 @@ const Navbar: FC<NavbarProps> = ({
     };
 
     const { user, loading } = useSelector((state: RootState) => state.firebase);
-    if (user) {
-        return <div>Loading...</div>;
-    }
 
     const userStatusMessage = intl.formatMessage({
         id: user ? "app.header.status.loggedIn" : "app.header.status.loggedOut",
@@ -61,7 +58,7 @@ const Navbar: FC<NavbarProps> = ({
                     aria-label={"Logo"}
                     className={"logo-wrapper"}
                 >
-                    <img src={reactLogo} alt={"Logo"} />
+                    <img src={logo} alt={"Logo"} />
                 </div>
 
                 <span>
@@ -98,7 +95,7 @@ const Navbar: FC<NavbarProps> = ({
                     >
                         <FormattedMessage
                             id={"app.header.login"}
-                            values={{ loginMode: "OAuth2" }}
+                            values={{ loginMode: "Twitter" }}
                         />
                     </Button>
                 )}

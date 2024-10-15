@@ -86,7 +86,7 @@ const VerticalMenu: FC<VerticalMenuProps> = ({
                     >
                         <FormattedMessage
                             id={"app.header.login"}
-                            values={{ loginMode: "OAuth2" }}
+                            values={{ loginMode: "Twitter" }}
                         />
                     </Button>
                 )}

@@ -25,13 +25,10 @@ const StyledPage = styled.div`
 
 const MainLayout: FC = () => {
     const dispatch = useDispatch();
+    const { user, loading } = useSelector((state: RootState) => state.firebase);
     const menuState = useSelector(
         (state: RootState) => state.menu.showVerticalMenu,
     );
-
-    const { user, loading } = useSelector((state: RootState) => state.firebase);
-
-    console.log("user", user);
 
     const handleLogin = () => {
         dispatch(loginWithTwitter());
@@ -76,7 +73,6 @@ const MainLayout: FC = () => {
                 className={menuState ? "visible" : "hidden"}
                 isAuthenticated={loading}
             />
-
             <Outlet />
         </StyledPage>
     );

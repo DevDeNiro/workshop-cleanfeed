@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ProfileWrapper = styled.main`
     display: flex;
-    place-items: center;
+    align-items: center;
     flex-direction: column;
+    justify-content: center;
+    height: 100vh;
 `;
