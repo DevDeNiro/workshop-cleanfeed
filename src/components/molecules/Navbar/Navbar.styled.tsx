@@ -8,10 +8,10 @@ const NavbarStyled = styled.div`
     grid-template-columns: auto auto;
     position: absolute;
     top: 0;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #815355;
     font-size: 0.875rem;
-    background: black;
-    color: white;
+    background: #815355;
+    color: #FEFCFD;
     z-index: 1000;
 
     .left-container {

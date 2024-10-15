@@ -1,8 +1,79 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+p, span, div {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Button styles */
+
+
+.primary{
+    background-color: #815355;
+    color: #FEFCFD;
+    border: 2px solid #815355;
+}
+
+
+.primary:hover{
+    background-color: #FEFCFD;
+    color: #815355;
+    border: 2px solid #815355;
+}
+
+.secondary{
+    background-color: #000505;
+    color: #FEFCFD;
+    border: 2px solid #000505;
+}
+
+.secondary:hover{
+    background-color: #FEFCFD;
+    color: #000505;
+    border: 2px solid #000505;
+}
+
+.tertiary{
+    background-color: #7F9183;
+    color: #FEFCFD;
+    border: 2px solid #7F9183;
+}
+
+.tertiary:hover{
+    background-color: #FEFCFD;
+    color: #7F9183;
+    border: 2px solid #7F9183;
+}
+
+.danger{
+    background-color: #EF7B45;
+    color: #FEFCFD;
+    border: 2px solid #EF7B45;
+}
+
+.danger:hover{
+    background-color: #FEFCFD;
+    color: #EF7B45;
+    border: 2px solid #EF7B45;
 }

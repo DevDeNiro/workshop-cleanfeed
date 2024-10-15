@@ -8,6 +8,7 @@ import Error from "@pages/Error/Error.tsx";
 import MainLayout from "@organisms/MainLayout.tsx";
 import Login from "@pages/Login/Login.tsx";
 import Profile from "@pages/Profile/Profile.tsx";
+import Style from "@pages/Styles/Styles.tsx";
 
 function App() {
     const auth = useAuth();
@@ -21,6 +22,7 @@ function App() {
                 { path: "/", element: <Home user={auth.user} /> },
                 { path: "/profile", element: <Profile user={auth.user} /> },
                 { path: "/auth/oauth2/login", element: <Login auth={auth} /> },
+                { path: "/styletest", element: <Style />},
             ],
         },
     ]);

@@ -8,6 +8,7 @@ import {
     WrappedComponentProps,
 } from "react-intl";
 import reactLogo from "@assets/react.svg";
+import logo from "@assets/Logo Marketing Agency Digital..svg";
 
 // Intern
 import { RootState } from "@redux/store.ts";
@@ -55,7 +56,7 @@ const Navbar: FC<NavbarProps> = ({
                     aria-label={"Logo"}
                     className={"logo-wrapper"}
                 >
-                    <img src={reactLogo} alt={"Logo"} />
+                    <img src={logo} alt={"Logo"} />
                 </div>
 
                 <span>
