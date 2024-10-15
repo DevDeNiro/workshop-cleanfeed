@@ -4,13 +4,16 @@ import axios, {
     InternalAxiosRequestConfig,
 } from "axios";
 
-const axiosClient = (url?: string, token?: string): AxiosInstance => {
+const BEARER_TOKEN = import.meta.env.VITE_BEARER_TOKEN as string;
+
+const axiosClient = (url?: string): AxiosInstance => {
     const instance = axios.create({
         baseURL: url,
         withCredentials: true,
         headers: {
             Accept: "application/json",
-            Authorization: token ? `Bearer ${token}` : "",
+            Authorization: BEARER_TOKEN ? `Bearer ${BEARER_TOKEN}` : "EMPTY",
+            "Content-Type": "application/json",
         },
     });
 

@@ -16,7 +16,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     };
 
     return (
-        <div>
+        <div style={{ marginTop: "10em 0" }}>
             <Input
                 placeholder="Mots clefs"
                 value={keyword}

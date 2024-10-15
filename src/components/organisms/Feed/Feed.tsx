@@ -8,6 +8,15 @@ type Post = {
     handle: string;
     content: string;
     likes: number;
+    replies: Reply[];
+};
+
+type Reply = {
+    id: string;
+    username: string;
+    handle: string;
+    content: string;
+    likes: number;
 };
 
 type FeedProps = {

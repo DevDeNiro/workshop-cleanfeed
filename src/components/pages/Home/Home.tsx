@@ -33,12 +33,6 @@ const Home: FC<HomeProps> = ({ user }) => {
 
     return (
         <HomeWrapper>
-            <h1>
-                <FormattedMessage
-                    id={"app.header.title"}
-                    defaultMessage={"Hello world wep app !"}
-                />
-            </h1>
             <h2>
                 <FormattedMessage
                     id={"app.header.status"}

@@ -8,6 +8,7 @@ const data: Post[] = [
         content:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc et elit aliquet interdum. Sed auctor, nulla nec lacinia.",
         likes: 10,
+        replies: [] as Post[],
     },
     {
         id: "2",
