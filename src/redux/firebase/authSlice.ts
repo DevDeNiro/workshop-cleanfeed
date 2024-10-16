@@ -1,9 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "firebase/auth";
+// import { User } from "firebase/auth"; // Remplacé par SerializedUser
 import { loginWithTwitter, logoutUser } from "@redux/firebase/authActions.ts";
 
+export type SerializedUser = {
+    uid: string;
+    displayName: string | null;
+    email: string | null;
+    photoURL: string | null;
+    accessToken?: string | null;
+    accessTokenSecret?: string | null;
+    username?: string | null;
+};
+
 type AuthState = {
-    user: User | null;
+    user: SerializedUser | null;
     isLoggedIn: boolean;
     loginLoading: boolean;
     logoutLoading: boolean;
@@ -25,9 +35,13 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         // Met à jour l'état de l'utilisateur lorsque l'état d'authentification change
-        setUser(state, action: PayloadAction<User | null>) {
+        setUser(state, action: PayloadAction<SerializedUser | null>) {
             state.user = action.payload;
             state.isLoggedIn = !!action.payload;
+        },
+        clearUser(state) {
+            state.user = null;
+            state.isLoggedIn = false;
         },
     },
     extraReducers: (builder) => {
@@ -38,7 +52,7 @@ const authSlice = createSlice({
             })
             .addCase(
                 loginWithTwitter.fulfilled,
-                (state, action: PayloadAction<User | undefined>) => {
+                (state, action: PayloadAction<SerializedUser | undefined>) => {
                     if (action.payload) {
                         state.user = action.payload;
                         state.isLoggedIn = true;

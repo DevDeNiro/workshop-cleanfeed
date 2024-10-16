@@ -4,7 +4,6 @@ import {
     injectIntl,
     WrappedComponentProps,
 } from "react-intl";
-import { User } from "firebase/auth";
 import { ChangeEvent, FC, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,12 +15,13 @@ import NavItem from "@components/atoms/NavItem/NavItem.tsx";
 import Button from "@components/atoms/Button/Button.tsx";
 import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import { selectOptions } from "@utils/selectTranslationValues.ts";
+import { SerializedUser } from "@redux/firebase/authSlice.ts";
 
 export interface VerticalMenuProps extends WrappedComponentProps {
     handleLogin: () => void;
     handleLogout: () => void;
     isAuthenticated: boolean;
-    user?: User | null;
+    user?: SerializedUser | null;
     className?: string;
     handleShowMenu?: () => void;
     onMenuItemClick?: () => void;

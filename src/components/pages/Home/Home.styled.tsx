@@ -6,3 +6,10 @@ export const HomeWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
 `;
+
+export const NotLoggedInMessage = styled.div`
+    color: red;
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-align: center;
+`;

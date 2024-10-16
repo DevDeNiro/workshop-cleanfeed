@@ -6,9 +6,9 @@ import axios, {
 
 const BEARER_TOKEN = import.meta.env.VITE_BEARER_TOKEN as string;
 
-const axiosClient = (url?: string): AxiosInstance => {
+const axiosClient = (): AxiosInstance => {
     const instance = axios.create({
-        baseURL: url,
+        baseURL: "https://api.twitter.com/2",
         withCredentials: true,
         headers: {
             Accept: "application/json",

@@ -1,6 +1,5 @@
 // Extern
 import { ChangeEvent, FC } from "react";
-import { User } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
     FormattedMessage,
@@ -19,12 +18,13 @@ import NavbarStyled from "@components/molecules/Navbar/Navbar.styled.tsx";
 import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import { selectOptions } from "@utils/selectTranslationValues.ts";
 import { toggleVerticalMenu } from "@redux/menu/menuSlice.ts";
+import { SerializedUser } from "@redux/firebase/authSlice.ts";
 
 export interface NavbarProps extends WrappedComponentProps {
     handleLogout: () => void;
     handleLogin: () => void;
     handleShowMenu: () => void;
-    user?: User | null;
+    user?: SerializedUser | null;
     isAuthenticated: boolean;
 }
 
