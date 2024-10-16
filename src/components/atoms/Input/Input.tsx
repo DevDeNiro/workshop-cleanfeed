@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from "react";
+import {InputStyled} from "./Input.styled.tsx";
 
 type InputProps = {
     placeholder: string;
@@ -8,7 +9,7 @@ type InputProps = {
 
 const Input: FC<InputProps> = ({ placeholder, value, onChange }) => {
     return (
-        <input
+        <InputStyled
             type="text"
             placeholder={placeholder}
             value={value}

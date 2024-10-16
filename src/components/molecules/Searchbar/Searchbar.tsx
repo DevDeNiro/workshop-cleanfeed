@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import Input from "@atoms/Input/Input.tsx";
 import Button from "@atoms/Button/Button.tsx";
+import {SearchBarStyled} from "./Searchbar.styled.tsx";
 
 type SearchBarProps = {
     onSearch: (keyword: string) => void;
@@ -16,7 +17,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     };
 
     return (
-        <div>
+        <SearchBarStyled>
             <Input
                 placeholder="Mots clefs"
                 value={keyword}
@@ -25,7 +26,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
             <Button label="POST" handleClick={handleSearch}>
                 Rechercher
             </Button>
-        </div>
+        </SearchBarStyled>
     );
 };
 
