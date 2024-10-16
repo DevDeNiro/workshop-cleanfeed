@@ -1,5 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
+import Tag from "@atoms/Tag/Tag.tsx";
+import SearchBar from "@molecules/Searchbar/Searchbar.tsx";
 
 // Wrapper pour tester les Styles
 const TestWrapper = styled.div`
@@ -41,6 +43,8 @@ const TestPage: FC = () => {
             <h1>Test de styles de composants</h1>
             <TestButton>Test Button</TestButton>
             <p>Ceci est un exemple de page pour tester les composants stylisés.</p>
+            <Tag label={"tag"} />
+            <SearchBar></SearchBar>
         </TestWrapper>
     );
 };
