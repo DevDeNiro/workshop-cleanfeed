@@ -1,4 +1,4 @@
-// Fetch user tweets with: GET https://api.twitter.com/2/users/{id}/tweets
+// https://developer.x.com/en/docs/x-api/tweets/timelines/api-reference/get-users-id-tweets
 import { callTwitterApi } from "@api/callTwitterApi.ts";
 
 export interface TwitterTweet {

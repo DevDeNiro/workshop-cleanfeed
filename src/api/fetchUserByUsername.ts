@@ -1,4 +1,4 @@
-// GET https://api.twitter.com/2/users/by/username/{username}
+// https://developer.x.com/en/docs/x-api/users/lookup/api-reference/get-users-by-username-username
 import { callTwitterApi } from "@api/callTwitterApi.ts";
 
 export interface TwitterUser {

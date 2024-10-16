@@ -7,7 +7,7 @@ import Feed, { Post } from "@organisms/Feed/Feed.tsx";
 import ProfileProps from "@pages/Profile/IProfile.ts";
 import { RootState } from "@redux/store.ts";
 import { useSelector } from "react-redux";
-
+import { auth } from "@utils/auth/firebaseConfig.ts";
 type HomeProps = ProfileProps;
 
 const Home: FC<HomeProps> = ({ user }) => {
@@ -21,7 +21,6 @@ const Home: FC<HomeProps> = ({ user }) => {
     const handleSearch = (query: string) => {
         console.log(`Search query: ${query}`);
     };
-
     const username = useSelector(
         (state: RootState) => state.firebase.user?.username,
     );
@@ -34,9 +33,12 @@ const Home: FC<HomeProps> = ({ user }) => {
     console.log("user object", user);
 
     useEffect(() => {
+        console.log("Utilisateur authentifié :", auth.currentUser);
         const loadPosts = async () => {
             try {
-                if (username && accessToken && accessTokenSecret) {
+                if (!user) {
+                    return;
+                } else if (username && accessToken && accessTokenSecret) {
                     const fetchedPosts = await fetchPosts(
                         username,
                         accessToken,

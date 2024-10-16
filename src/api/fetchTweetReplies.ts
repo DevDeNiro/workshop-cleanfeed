@@ -1,7 +1,7 @@
 import { callTwitterApi } from "@api/callTwitterApi.ts";
 import { TwitterUser } from "@api/fetchUserByUsername.ts";
 
-// GET https://api.twitter.com/2/tweets/search/recent?query=in_reply_to_tweet_id:{tweet_id}
+// https://developer.x.com/en/docs/x-api/tweets/search/api-reference/get-tweets-search-recent#tab1
 export interface TwitterReply {
     id: string;
     text: string;

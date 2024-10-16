@@ -18,7 +18,10 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
-            dispatch(setUser(user));
+            if (!user) {
+                // dispatch(clearUser()); // Update redux state only if user is logged out
+                dispatch(setUser(user));
+            }
         });
         return () => unsubscribe();
     }, [dispatch]);

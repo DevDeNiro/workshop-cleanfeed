@@ -3,6 +3,7 @@ Les lamda au sein de firebase ne prennent en charge que commonJs et non ES6
 # dependencies
 pnpm add @google-cloud/functions-framework
 pnpm add -D firebase-tools
+Voir pour l'utilisation de : "firebase-functions-test": "^3.3.0",
 
 # commands
  firebase login

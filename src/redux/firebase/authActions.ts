@@ -1,4 +1,9 @@
-import { signInWithPopup, signOut, TwitterAuthProvider } from "firebase/auth";
+import {
+    getAdditionalUserInfo,
+    signInWithPopup,
+    signOut,
+    TwitterAuthProvider,
+} from "firebase/auth";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { auth, provider } from "@utils/auth/firebaseConfig.ts";
 // import {getFunctions, httpsCallable} from "firebase/functions";
@@ -76,6 +81,11 @@ export const loginWithTwitter = createAsyncThunk(
             const accessToken = credential.accessToken;
             const accessTokenSecret = credential.secret;
 
+            // Can use getAdditionalUserInfo to observe the user's profile,
+            // to check if a user is new or not...
+            const additionalUserInfo = getAdditionalUserInfo(result);
+            const username = additionalUserInfo?.username;
+
             const serializedUser: SerializedUser = {
                 uid: user.uid,
                 displayName: user.displayName,
@@ -83,6 +93,7 @@ export const loginWithTwitter = createAsyncThunk(
                 photoURL: user.photoURL,
                 accessTokenSecret,
                 accessToken,
+                username,
             };
 
             return serializedUser;

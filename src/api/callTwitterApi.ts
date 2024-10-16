@@ -1,7 +1,7 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { app } from "@utils/auth/firebaseConfig";
 // Is done via cloud functions lambda
-const functions = getFunctions(app);
+const functions = getFunctions(app, "us-central1");
 
 export const callTwitterApi = async <T>(
     endpoint: string,
@@ -23,7 +23,7 @@ export const callTwitterApi = async <T>(
     try {
         const result = await twitterProxy(data);
         return result.data;
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("Erreur lors de l'appel à la fonction Cloud:", error);
         throw error;
     }
