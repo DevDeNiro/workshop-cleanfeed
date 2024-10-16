@@ -5,7 +5,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* FONT */
+
+
+* {
     font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 h1 {
@@ -25,6 +33,14 @@ p, span, div {
     font-weight: 500;
     font-style: normal;
 }
+
+input::placeholder {
+    font-family: "Montserrat", "sans-serif";
+    font-weight: 300;
+    font-style: normal;
+}
+
+
 
 /* Button styles */
 
@@ -76,4 +92,13 @@ p, span, div {
     background-color: #FEFCFD;
     color: #EF7B45;
     border: 2px solid #EF7B45;
+}
+
+
+
+/* INPUT  */
+
+
+input{
+    all: unset;
 }
