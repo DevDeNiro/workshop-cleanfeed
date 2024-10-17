@@ -5,8 +5,8 @@ CleanFeed est une application web monopage (SPA) conçue pour aider les utilisat
 ## Features
 
 -   [x] : Connexion sécurisée à son compte Twitter via OAuth2
--   [ ] : Affichage rétroactif du flux
--   [ ] : Filtrage Personnalisable du Contenu par Mots-clés (Tags)
+-   [x] : Affichage rétroactif du flux
+-   [x] : Filtrage Personnalisable du Contenu par Mots-clés (Tags)
 -   [ ] : Tableau de Bord (éducatif)
 
 ## Devlopement
