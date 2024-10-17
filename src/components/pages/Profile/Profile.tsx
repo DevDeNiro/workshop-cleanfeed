@@ -13,7 +13,7 @@ const Profile: FC<ProfileProps> = ({ user }) => {
     return (
         user && (
             <ProfileWrapper>
-                <h1>{user.displayName}</h1>
+                <h1 style={{ marginTop: "6em" }}>{user.displayName}</h1>
                 <p>Username: {user.displayName}</p>
                 <p>Email: {user.email}</p>
             </ProfileWrapper>

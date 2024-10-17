@@ -14,6 +14,7 @@ import { FormattedMessage } from "react-intl";
 import Tag from "@atoms/Tag/Tag.tsx";
 import Button from "@atoms/Button/Button.tsx";
 import { ButtonWrapper } from "@molecules/Searchbar/Searchbar.styled.tsx";
+import { SyncLoader } from "react-spinners";
 
 type HomeProps = ProfileProps;
 
@@ -87,7 +88,7 @@ const Home: FC<HomeProps> = ({ user }) => {
                     />
                 </NotLoggedInMessage>
             ) : loading ? (
-                <p>Chargement des posts...</p>
+                <SyncLoader />
             ) : (
                 <>
                     <SearchContainer>
@@ -99,7 +100,10 @@ const Home: FC<HomeProps> = ({ user }) => {
                                     tags.length === 0 || tags.length === maxTags
                                 }
                             >
-                                Rechercher
+                                <FormattedMessage
+                                    id={"app.search.search-button"}
+                                    defaultMessage={"Rechercher"}
+                                />
                             </Button>
                         </ButtonWrapper>
                     </SearchContainer>

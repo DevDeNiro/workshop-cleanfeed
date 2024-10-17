@@ -11,7 +11,6 @@ import { loginWithTwitter, logoutUser } from "@redux/firebase/authActions.ts";
 
 const StyledPage = styled.div`
     width: 100%;
-    margin: 5em auto;
 
     ${VerticalMenuStyled} {
         position: absolute;

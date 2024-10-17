@@ -96,3 +96,9 @@ input::placeholder {
 input {
     all: unset;
 }
+
+input[type="checkbox"] {
+    appearance: auto; /* Force l'apparence native de la checkbox */
+    -webkit-appearance: checkbox; /* Pour les navigateurs Webkit */
+    -moz-appearance: checkbox; /* Pour les navigateurs basés sur Gecko */
+}

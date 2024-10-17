@@ -6,6 +6,7 @@ import {
     InputWrapper,
     SearchBarStyled,
 } from "./Searchbar.styled.tsx";
+import { FormattedMessage } from "react-intl";
 
 type SearchBarProps = {
     onSearch: (keyword: string) => void;
@@ -24,13 +25,17 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     return (
         <SearchBarStyled>
             <InputWrapper>
-                <Input
-                    placeholder="Mots clefs"
-                    value={keyword}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setKeyword(e.target.value)
-                    }
-                />
+                <FormattedMessage id="app.search.placeholder">
+                    {(placeholder) => (
+                        <Input
+                            placeholder={placeholder as unknown as string}
+                            value={keyword}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                setKeyword(e.target.value)
+                            }
+                        />
+                    )}
+                </FormattedMessage>
             </InputWrapper>
             <ButtonWrapper>
                 <Button
@@ -38,7 +43,10 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
                     handleClick={handleSearch}
                     logout={true}
                 >
-                    Ajouter
+                    <FormattedMessage
+                        id={"app.search.add-button"}
+                        defaultMessage={"Ajouter"}
+                    />
                 </Button>
             </ButtonWrapper>
         </SearchBarStyled>

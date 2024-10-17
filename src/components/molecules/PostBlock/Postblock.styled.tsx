@@ -3,27 +3,24 @@ import styled from "styled-components";
 export const PostblockWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    border: 1px solid #ddd;
+    gap: 1rem;
+    border: 1px solid #000000;
     border-radius: 5px;
     padding: 1rem;
-    background-color: #f9f9f9;
+    overflow-y: inherit;
+    position: relative;
+`;
 
-    .user-info {
-        font-weight: bold;
-        color: #2b2d42;
-    }
+export const ActionButtons = styled.div`
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 
-    .content {
-        color: #343a40;
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    .likes {
-        margin-top: 0.5rem;
-        color: #888;
-        font-size: 0.9rem;
+    button {
+        &:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
     }
 `;
 
@@ -33,15 +30,19 @@ export const ReplyWrapper = styled.div`
     padding-top: 1rem;
 
     .reply-block {
+        display: flex;
+        align-items: center;
         margin-bottom: 1rem;
 
         strong {
             color: #007bff;
+            margin-left: 0.5rem;
         }
 
         .likes {
             color: #888;
             font-size: 0.8rem;
+            margin-left: auto;
         }
     }
 `;

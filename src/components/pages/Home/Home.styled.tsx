@@ -15,6 +15,7 @@ export const SearchContainer = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 0.75rem;
+    margin-top: 6em;
 `;
 
 export const TagsContainer = styled.div`
@@ -22,6 +23,7 @@ export const TagsContainer = styled.div`
     flex-wrap: wrap;
     gap: 0.875rem;
     width: 662px;
+    margin-bottom: 5px;
 `;
 
 export const NotLoggedInMessage = styled.div`
