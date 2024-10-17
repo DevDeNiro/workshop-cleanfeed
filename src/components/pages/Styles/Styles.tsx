@@ -37,6 +37,10 @@ const TestButton = styled.button`
     }
 `;
 
+const fakeSearch = (query: string) => {
+    console.log("Recherche de :", query);
+};
+
 const TestPage: FC = () => {
     return (
         <TestWrapper>
@@ -46,7 +50,7 @@ const TestPage: FC = () => {
                 Ceci est un exemple de page pour tester les composants stylisés.
             </p>
             <Tag label={"tag"} />
-            <SearchBar></SearchBar>
+            <SearchBar onSearch={fakeSearch}></SearchBar>
         </TestWrapper>
     );
 };

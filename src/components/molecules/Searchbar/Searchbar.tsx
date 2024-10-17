@@ -11,8 +11,9 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     const [keyword, setKeyword] = useState("");
 
     const handleSearch = () => {
-        if (keyword) {
-            onSearch(keyword);
+        if (keyword.trim()) {
+            onSearch(keyword.trim());
+            setKeyword(""); // Réinitialiser le champ après ajout du tag
         }
     };
 
@@ -25,8 +26,8 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
                     setKeyword(e.target.value)
                 }
             />
-            <Button label="POST" handleClick={handleSearch}>
-                Rechercher
+            <Button label="ajouter" handleClick={handleSearch}>
+                Ajouter
             </Button>
         </SearchBarStyled>
     );
