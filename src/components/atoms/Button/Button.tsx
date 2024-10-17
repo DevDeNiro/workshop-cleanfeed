@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { StyledButton } from "@atoms/Button/Button.styled.tsx";
 
 export interface ButtonProps {
@@ -19,28 +19,13 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
 
-    useEffect(() => {
-        if (buttonRef.current) {
-            if (logout) {
-                buttonRef.current.setAttribute("aria-label", "Logout");
-                buttonRef.current.style.background = "red";
-                buttonRef.current.style.color = "white";
-                return;
-            } else if (!logout) {
-                buttonRef.current.setAttribute("aria-label", "Menu");
-                buttonRef.current.style.background = "#73f0f3";
-                buttonRef.current.style.color = "black";
-                return;
-            }
-        }
-    }, [logout]);
-
     return (
         <StyledButton
             aria-haspopup={hasPopup}
             aria-expanded={expanded}
             ref={buttonRef}
             onClick={handleClick}
+            className={logout ? "danger" : "secondary"}
         >
             {children}
         </StyledButton>

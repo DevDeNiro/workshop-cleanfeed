@@ -4,9 +4,6 @@ const StyledBurgerButton = styled.button`
     display: block;
     height: 2rem;
     font-size: 2rem;
-    //position: absolute;
-    //bottom: 19px;
-    //right: 19px;
     color: white;
     background: none;
     border: none;

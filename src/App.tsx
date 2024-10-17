@@ -7,9 +7,9 @@ import Error from "@pages/Error/Error.tsx";
 import MainLayout from "@organisms/MainLayout.tsx";
 import Login from "@pages/Login/Login.tsx";
 import Profile from "@pages/Profile/Profile.tsx";
-// import { auth } from "@utils/auth/firebaseConfig.ts"; à voir son utilisation pour le Login
-import { useSelector } from "react-redux";
+import Style from "@pages/Styles/Styles.tsx";
 import { RootState } from "@redux/store.ts";
+import { useSelector } from "react-redux";
 
 function App() {
     const user = useSelector((state: RootState) => state.firebase.user);
@@ -23,6 +23,7 @@ function App() {
                 { path: "/", element: <Home user={user} /> },
                 { path: "/profile", element: <Profile user={user} /> },
                 { path: "/auth/oauth2/login", element: <Login /> },
+                { path: "/styletest", element: <Style /> },
             ],
         },
     ]);

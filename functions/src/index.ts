@@ -1,22 +1,22 @@
 // https://firebase.google.com/docs/functions/typescript
 
 // Importation de type effacé à La compilation Js
-import {CallableContext} from "firebase-functions/lib/common/providers/https";
+import { CallableContext } from "firebase-functions/lib/common/providers/https";
 // import {defineString} from "firebase-functions/lib/params";
-const {defineString} = require("firebase-functions/params");
-const {onCall, HttpsError} = require('firebase-functions/v1/https');
+const { defineString } = require("firebase-functions/params");
+const { onCall, HttpsError } = require("firebase-functions/v1/https");
 
-const axios = require('axios');
-const OAuth = require('oauth-1.0a');
-const {createHmac} = require('crypto');
+const axios = require("axios");
+const OAuth = require("oauth-1.0a");
+const { createHmac } = require("crypto");
 
 // const dotenv = require("dotenv");
 // dotenv.config();
 // const consumerKey = process.env.CONSUMER_KEY ;
 // const consumerSecret = process.env.CONSUMER_SECRET;
 
-const consumerKeySecret = defineString('TWITTER_CONSUMER_KEY');
-const consumerSecretSecret = defineString('TWITTER_CONSUMER_SECRET');
+const consumerKeySecret = defineString("TWITTER_CONSUMER_KEY");
+const consumerSecretSecret = defineString("TWITTER_CONSUMER_SECRET");
 
 function getOAuth() {
     const consumerKey = consumerKeySecret.value();
@@ -56,7 +56,7 @@ exports.twitterProxy = onCall(
             );
         }
 
-        const {url, method, params, accessToken, accessTokenSecret} = data;
+        const { url, method, params, accessToken, accessTokenSecret } = data;
         console.log("Données reçues :", data);
 
         const oauth = getOAuth();
@@ -91,23 +91,23 @@ exports.twitterProxy = onCall(
             if (axios.isAxiosError(error)) {
                 console.error(
                     "Erreur lors de l'appel à l'API Twitter:",
-                    error.response?.data || error.message
+                    error.response?.data || error.message,
                 );
                 throw new HttpsError(
-                    'unknown',
+                    "unknown",
                     "Échec de la requête à l'API Twitter",
                     {
                         message: error.message,
                         response: error.response?.data,
                         status: error.response?.status,
-                    }
+                    },
                 );
             } else {
-                console.error('Erreur inconnue:', error);
+                console.error("Erreur inconnue:", error);
                 throw new HttpsError(
-                    'unknown',
-                    'Erreur inconnue',
-                    error.toString()
+                    "unknown",
+                    "Erreur inconnue",
+                    error.toString(),
                 );
             }
         }

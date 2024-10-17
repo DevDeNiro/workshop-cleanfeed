@@ -1,6 +1,6 @@
 import PostBlock from "@molecules/PostBlock/Postblock.tsx";
 import { FC } from "react";
-import { FeedWrapper } from "@organisms/Feed/Feed.styled.tsx";
+import { CustomScroll, FeedWrapper } from "@organisms/Feed/Feed.styled.tsx";
 import { Post } from "@organisms/Feed/IFeed.ts";
 
 type FeedProps = {
@@ -9,7 +9,7 @@ type FeedProps = {
 
 const Feed: FC<FeedProps> = ({ posts }) => {
     return (
-        <FeedWrapper>
+        <CustomScroll>
             <FeedWrapper>
                 {posts.map((post) => (
                     <PostBlock
@@ -22,7 +22,7 @@ const Feed: FC<FeedProps> = ({ posts }) => {
                     />
                 ))}
             </FeedWrapper>
-        </FeedWrapper>
+        </CustomScroll>
     );
 };
 
