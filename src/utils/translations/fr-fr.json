@@ -15,6 +15,10 @@
     "app.header.not-connected": "Vous n'êtes pas connecté. Veuillez vous connecter pour accéder à votre fil d'actualité.",
     "app.search.placeholder": "Ajoutez vos mots-clés ici",
     "app.search.add-button": "Ajouter",
+    "app.feed.replies": "Réponses :",
+    "app.feed.bulk-select-all": "Tout Sélectionner",
+    "app.feed.bulk-delete-all": "Tout Supprimer",
+    "app.feed.bulk-report-all": "Tout Signaler",
     "app.search.search-button": "Rechercher",
     "app.feed.retrieve-tweets": "Tweets Récupérés",
     "app.feed.filtered-tweets": "Résultats Filtrés"

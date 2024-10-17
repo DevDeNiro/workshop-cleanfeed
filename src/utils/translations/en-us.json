@@ -15,6 +15,10 @@
     "app.header.not-connected": "You are not connected. Please log in to access your news feed.",
     "app.search.placeholder": "Add your keywords here",
     "app.search.add-button": "Add",
+    "app.feed.replies": "Replies :",
+    "app.feed.bulk-select-all": "Select All",
+    "app.feed.bulk-delete-all": "Delete All",
+    "app.feed.bulk-report-all": "Report All",
     "app.search.search-button": "Search",
     "app.feed.retrieve-tweets": "Retrieved Tweets",
     "app.feed.filtered-tweets": "Filtered Results"

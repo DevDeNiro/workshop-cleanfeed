@@ -8,6 +8,7 @@ import { Reply } from "@organisms/Feed/IFeed.ts";
 import Checkbox from "@atoms/Checkbox/Checkbox.tsx";
 import Button from "@atoms/Button/Button.tsx";
 import { useBreakpoint } from "@/hooks";
+import { FormattedMessage } from "react-intl";
 
 type PostBlockProps = {
     displayName: string;
@@ -52,13 +53,22 @@ const PostBlock: FC<PostBlockProps> = ({
             {replies && replies.length > 0 && (
                 <ReplyWrapper style={{ padding: textPadding }}>
                     <StyledPostBlocSectionHeader>
-                        <h3>Réponses:</h3>
+                        <h3>
+                            <FormattedMessage
+                                id={"app.feed.replies"}
+                                defaultMessage={"Réponses:"}
+                            />
+                        </h3>
+
                         <Button
                             handleClick={onSelectAll}
                             logout={false}
                             style={{ padding: buttonPadding }}
                         >
-                            Sélectionner Tout
+                            <FormattedMessage
+                                id={"app.feed.bulk-select-all"}
+                                defaultMessage={"Sélectionner Tout"}
+                            />
                         </Button>
                     </StyledPostBlocSectionHeader>
                     {replies.map((reply) => (

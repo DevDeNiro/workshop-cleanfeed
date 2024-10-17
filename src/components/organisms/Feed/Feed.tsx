@@ -17,6 +17,7 @@ import FilteredResult, {
 } from "@organisms/Feed/FilteredResult.tsx";
 import Button from "@atoms/Button/Button.tsx";
 import { useBreakpoint } from "@/hooks";
+import { FaFlag, FaTrash } from "react-icons/fa6";
 
 type FeedProps = {
     posts: Post[];
@@ -110,14 +111,26 @@ const Feed: FC<FeedProps> = ({
                             logout={true}
                             style={{ padding: buttonPadding }}
                         >
-                            Supprimer Sélectionnés
+                            <FaTrash style={{ marginRight: "8px" }} />
+                            <FormattedMessage
+                                id={"app.feed.bulk-delete-all"}
+                                defaultMessage={
+                                    "Supprimer tous les commentaires sélectionnés"
+                                }
+                            />
                         </Button>
                         <Button
                             handleClick={handleBulkReport}
                             logout={true}
                             style={{ padding: buttonPadding }}
                         >
-                            Signaler Sélectionnés
+                            <FaFlag style={{ marginRight: "8px" }} />
+                            <FormattedMessage
+                                id={"app.feed.bulk-report-all"}
+                                defaultMessage={
+                                    "Signaler tous les commentaires sélectionnés"
+                                }
+                            />
                         </Button>
                     </div>
                 </StyledTweetSectionHeader>

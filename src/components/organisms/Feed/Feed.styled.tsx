@@ -44,6 +44,10 @@ export const StyledTweetSectionHeader = styled.div`
     .button {
         gap: 1rem;
     }
+
+    button:hover {
+        transform: scale(1.05);
+    }
 `;
 
 export const FilteredResultWrapper = styled.div`
