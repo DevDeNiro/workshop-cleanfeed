@@ -1,7 +1,8 @@
-import { Post, Reply } from "@organisms/Feed/Feed.tsx";
 import { fetchUserByUsername } from "@api/fetchUserByUsername.ts";
 import { fetchUserTweets } from "@api/fetchUserTweets.ts";
 import { fetchTweetReplies } from "@api/fetchTweetReplies.ts";
+import { mockPosts } from "@utils/data/mocks.ts";
+import { Post, Reply } from "@organisms/Feed/IFeed.ts";
 
 export const fetchPosts = async (
     username: string,
@@ -73,4 +74,16 @@ export const fetchPosts = async (
             );
         }
     }
+};
+
+export const mockFetchPosts = async (
+    username: string,
+    accessToken: string,
+    accessTokenSecret: string,
+): Promise<Post[]> => {
+    console.log("Username:", username);
+    console.log("Access token:", accessToken);
+    console.log("Access token secret:", accessTokenSecret);
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    return mockPosts;
 };

@@ -6,7 +6,7 @@ export type SerializedUser = {
     uid: string;
     displayName: string | null;
     email: string | null;
-    photoURL: string | null;
+    photoURL?: string | null;
     accessToken?: string | null;
     accessTokenSecret?: string | null;
     username?: string | null;

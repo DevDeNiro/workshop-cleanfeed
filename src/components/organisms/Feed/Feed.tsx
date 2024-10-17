@@ -1,23 +1,7 @@
 import PostBlock from "@molecules/PostBlock/Postblock.tsx";
 import { FC } from "react";
 import { FeedWrapper } from "@organisms/Feed/Feed.styled.tsx";
-
-export interface Post {
-    id: string;
-    displayName: string;
-    username: string;
-    content: string;
-    likes: number;
-    replies: Reply[];
-}
-
-export interface Reply {
-    id: string;
-    displayName: string;
-    username: string;
-    content: string;
-    likes: number;
-}
+import { Post } from "@organisms/Feed/IFeed.ts";
 
 type FeedProps = {
     posts: Post[];
