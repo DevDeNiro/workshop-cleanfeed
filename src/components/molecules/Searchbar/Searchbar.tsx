@@ -1,7 +1,9 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import Input from "@atoms/Input/Input.tsx";
-import Button from "@atoms/Button/Button.tsx";
-import {SearchBarStyled} from "./Searchbar.styled.tsx";
+//import Button from "@atoms/Button/Button.tsx";
+import IconButton from "../../atoms/IconButton/IconButton.tsx";
+import { SearchBarStyled , Spacer } from "./Searchbar.styled.tsx";
+import MagnifyingGlassIcon from "../../../assets/icons/magnifying-glass-solid.svg";
 
 type SearchBarProps = {
     onSearch: (keyword: string) => void;
@@ -23,9 +25,8 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
                 value={keyword}
                 onChange={(e: React.ChangeEvent) => setKeyword(e.target.value)}
             />
-            <Button label="POST" handleClick={handleSearch}>
-                Rechercher
-            </Button>
+            <IconButton onClick={() => console.log(MagnifyingGlassIcon)} url={MagnifyingGlassIcon} alt='Magnifying Glass'/>
+            <Spacer></Spacer>
         </SearchBarStyled>
     );
 };
