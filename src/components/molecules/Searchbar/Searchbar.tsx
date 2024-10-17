@@ -1,7 +1,11 @@
 import { ChangeEvent, FC, useState } from "react";
 import Input from "@atoms/Input/Input.tsx";
 import Button from "@atoms/Button/Button.tsx";
-import { SearchBarStyled } from "./Searchbar.styled.tsx";
+import {
+    ButtonWrapper,
+    InputWrapper,
+    SearchBarStyled,
+} from "./Searchbar.styled.tsx";
 
 type SearchBarProps = {
     onSearch: (keyword: string) => void;
@@ -19,16 +23,24 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
 
     return (
         <SearchBarStyled>
-            <Input
-                placeholder="Mots clefs"
-                value={keyword}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setKeyword(e.target.value)
-                }
-            />
-            <Button label="ajouter" handleClick={handleSearch}>
-                Ajouter
-            </Button>
+            <InputWrapper>
+                <Input
+                    placeholder="Mots clefs"
+                    value={keyword}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setKeyword(e.target.value)
+                    }
+                />
+            </InputWrapper>
+            <ButtonWrapper>
+                <Button
+                    label="Ajouter"
+                    handleClick={handleSearch}
+                    logout={true}
+                >
+                    Ajouter
+                </Button>
+            </ButtonWrapper>
         </SearchBarStyled>
     );
 };

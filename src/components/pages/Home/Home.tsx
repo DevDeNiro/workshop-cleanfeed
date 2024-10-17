@@ -2,6 +2,8 @@ import { FC, useEffect, useState } from "react";
 import {
     HomeWrapper,
     NotLoggedInMessage,
+    SearchContainer,
+    TagsContainer,
 } from "@components/pages/Home/Home.styled.tsx";
 import SearchBar from "@molecules/Searchbar/Searchbar.tsx";
 import Feed from "@organisms/Feed/Feed.tsx";
@@ -10,14 +12,20 @@ import { Post } from "@organisms/Feed/IFeed.ts";
 import { mockFetchPosts } from "@api/fetchPosts.ts";
 import { FormattedMessage } from "react-intl";
 import Tag from "@atoms/Tag/Tag.tsx";
+import Button from "@atoms/Button/Button.tsx";
+import { ButtonWrapper } from "@molecules/Searchbar/Searchbar.styled.tsx";
 
 type HomeProps = ProfileProps;
 
 const Home: FC<HomeProps> = ({ user }) => {
     const [posts, setPosts] = useState<Post[]>([]);
     const [tags, setTags] = useState<string[]>([]);
-    const maxTags = 5;
     const [loading, setLoading] = useState<boolean>(true);
+    const [loadingFilteredResults, setLoadingFilteredResults] =
+        useState<boolean>(false);
+    const [showFilteredResults, setShowFilteredResults] =
+        useState<boolean>(false);
+    const maxTags = 5;
 
     const handleSearch = (query: string) => {
         // Ajouter un tag seulement si on n'a pas encore atteint le maximum
@@ -34,8 +42,13 @@ const Home: FC<HomeProps> = ({ user }) => {
     const handleSubmit = () => {
         // Envoyer les tags à l'API
         if (tags.length > 0) {
+            setLoadingFilteredResults(true);
             console.log("Envoyer les tags à l'API:", tags);
-            // Appel API ici...
+
+            setTimeout(() => {
+                setLoadingFilteredResults(false);
+                setShowFilteredResults(true);
+            }, 2000);
         }
     };
 
@@ -77,30 +90,47 @@ const Home: FC<HomeProps> = ({ user }) => {
                 <p>Chargement des posts...</p>
             ) : (
                 <>
-                    <SearchBar onSearch={handleSearch} />
-                    <div style={{ marginTop: "1em" }}>
-                        {tags.length > 0 && (
-                            <div>
-                                {tags.map((tag, index) => (
-                                    <Tag
-                                        key={index}
-                                        label={tag}
-                                        onRemove={() => handleTagRemove(index)}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                        {tags.length === maxTags && (
-                            <p style={{ color: "red" }}>
-                                Maximum de {maxTags} tags atteint.
-                            </p>
-                        )}
-                    </div>
+                    <SearchContainer>
+                        <SearchBar onSearch={handleSearch} />
+                        <ButtonWrapper>
+                            <Button
+                                handleClick={handleSubmit}
+                                disabled={
+                                    tags.length === 0 || tags.length === maxTags
+                                }
+                            >
+                                Rechercher
+                            </Button>
+                        </ButtonWrapper>
+                    </SearchContainer>
 
-                    <button onClick={handleSubmit} disabled={tags.length === 0}>
-                        Rechercher
-                    </button>
-                    <Feed posts={posts} />
+                    <TagsContainer>
+                        {tags.map((tag, index) => (
+                            <Tag
+                                key={index}
+                                label={tag}
+                                onRemove={() => handleTagRemove(index)}
+                            />
+                        ))}
+                    </TagsContainer>
+
+                    {tags.length === maxTags && (
+                        <p
+                            style={{
+                                color: "red",
+                                width: 662,
+                                margin: "12px auto",
+                            }}
+                        >
+                            Maximum de {maxTags} tags atteint.
+                        </p>
+                    )}
+
+                    <Feed
+                        posts={posts}
+                        showFilteredResults={showFilteredResults}
+                        loadingFilteredResults={loadingFilteredResults}
+                    />
                 </>
             )}
         </HomeWrapper>

@@ -8,6 +8,7 @@ export interface ButtonProps {
     expanded?: boolean;
     logout?: boolean;
     label?: string;
+    disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({

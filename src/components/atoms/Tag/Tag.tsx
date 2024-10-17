@@ -11,7 +11,11 @@ const Tag: FC<TagProps> = ({ label, onRemove }) => {
         <StyledTag>
             {label}
             {onRemove && (
-                <span className="close" onClick={onRemove}>
+                <span
+                    style={{ margin: "0 0 0 10px" }}
+                    className="close"
+                    onClick={onRemove}
+                >
                     &times;
                 </span>
             )}

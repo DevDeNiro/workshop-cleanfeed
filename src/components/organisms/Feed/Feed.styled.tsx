@@ -74,6 +74,17 @@ export const FilteredResultWrapper = styled.div`
     }
 `;
 
+export const FilteredResult = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    height: auto;
+`;
+
 // Style des tweets récupérés
 export const FeedWrapper = styled.div`
     display: flex;
