@@ -9,6 +9,17 @@ export const PostblockWrapper = styled.div`
     padding: 1rem;
     overflow-y: inherit;
     position: relative;
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .username {
+        color: #888;
+        font-size: 0.9rem;
+        margin-top: 0.2rem;
+    }
 `;
 
 export const ActionButtons = styled.div`
@@ -45,4 +56,10 @@ export const ReplyWrapper = styled.div`
             margin-left: auto;
         }
     }
+`;
+
+export const StyledPostBlocSectionHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;

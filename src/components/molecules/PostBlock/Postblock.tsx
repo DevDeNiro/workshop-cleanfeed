@@ -2,6 +2,7 @@ import { FC } from "react";
 import {
     PostblockWrapper,
     ReplyWrapper,
+    StyledPostBlocSectionHeader,
 } from "@molecules/PostBlock/Postblock.styled.tsx";
 import { Reply } from "@organisms/Feed/IFeed.ts";
 import Checkbox from "@atoms/Checkbox/Checkbox.tsx";
@@ -22,7 +23,7 @@ const PostBlock: FC<PostBlockProps> = ({
     username,
     displayName,
     content,
-    likes,
+    // likes,
     replies,
     selectedComments,
     onCommentSelect,
@@ -31,17 +32,19 @@ const PostBlock: FC<PostBlockProps> = ({
     return (
         <PostblockWrapper>
             <div className="user-info">
-                <strong>{displayName}</strong> @{username}
+                <strong>{displayName}</strong>
+                <div className="username">@{username}</div>
             </div>
             <div className="content">{content}</div>
-            <div className="likes">Likes: {likes}</div>
 
             {replies && replies.length > 0 && (
                 <ReplyWrapper>
-                    <h4>Réponses:</h4>
-                    <Button handleClick={onSelectAll} logout={false}>
-                        Sélectionner Tout
-                    </Button>
+                    <StyledPostBlocSectionHeader>
+                        <h4>Réponses:</h4>
+                        <Button handleClick={onSelectAll} logout={false}>
+                            Sélectionner Tout
+                        </Button>
+                    </StyledPostBlocSectionHeader>
                     {replies.map((reply) => (
                         <div key={reply.id} className="reply-block">
                             <Checkbox
@@ -51,10 +54,17 @@ const PostBlock: FC<PostBlockProps> = ({
                                 }
                                 checked={selectedComments.includes(reply.id)}
                             />
-                            <strong>{reply.displayName}</strong>@
-                            {reply.username}
+                            <div
+                                className="reply-info"
+                                style={{ marginRight: "15px" }}
+                            >
+                                <strong>{reply.displayName}</strong>
+                                <div className="username">
+                                    @{reply.username}
+                                </div>
+                            </div>
                             <div>{reply.content}</div>
-                            <div>Likes: {reply.likes}</div>
+                            <div className="likes">Likes: {reply.likes}</div>
                         </div>
                     ))}
                 </ReplyWrapper>
