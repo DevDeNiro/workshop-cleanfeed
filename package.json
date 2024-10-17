@@ -18,8 +18,8 @@
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx,html,css}": [
-            "pnpm run lint",
-            "pnpm run pretty"
+            "pnpm run pretty",
+            "pnpm run lint"
         ]
     },
     "dependencies": {
