@@ -160,7 +160,7 @@ const Feed: FC<FeedProps> = ({
                 >
                     <h2 style={{ margin: "0 0 13px 3px" }}>
                         <FormattedMessage
-                            id={"app.search.filtered-tweets"}
+                            id={"app.feed.filtered-tweets"}
                             defaultMessage={"Résultats Filtrés"}
                         />
                     </h2>
@@ -171,7 +171,6 @@ const Feed: FC<FeedProps> = ({
                             {filteredResults.length > 0 ? (
                                 filteredResults.map((result, index) => (
                                     <FilteredResultItem key={index}>
-                                        <strong>Filtré :</strong>
                                         <p
                                             dangerouslySetInnerHTML={{
                                                 __html: result,
