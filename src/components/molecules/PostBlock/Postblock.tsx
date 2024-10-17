@@ -1,6 +1,9 @@
 import { FC } from "react";
-import { PostblockWrapper } from "@molecules/PostBlock/Postblock.styled.tsx";
-import { Reply } from "@organisms/Feed/Feed.tsx";
+import {
+    PostblockWrapper,
+    ReplyWrapper,
+} from "@molecules/PostBlock/Postblock.styled.tsx";
+import { Reply } from "@organisms/Feed/IFeed.ts";
 
 type PostBlockProps = {
     displayName: string;
@@ -19,23 +22,24 @@ const PostBlock: FC<PostBlockProps> = ({
 }) => {
     return (
         <PostblockWrapper>
-            <div>
+            <div className="user-info">
                 <strong>{displayName}</strong> @{username}
             </div>
-            <div>{content}</div>
-            <div>Likes: {likes}</div>
+            <div className="content">{content}</div>
+            <div className="likes">Likes: {likes}</div>
+
             {replies && replies.length > 0 && (
-                <div>
-                    <h4>Réponses:</h4>
+                <ReplyWrapper>
+                    <h4>Responses:</h4>
                     {replies.map((reply) => (
-                        <div key={reply.id}>
+                        <div key={reply.id} className="reply-block">
                             <strong>{reply.displayName}</strong> @
                             {reply.username}
                             <div>{reply.content}</div>
                             <div>Likes: {reply.likes}</div>
                         </div>
                     ))}
-                </div>
+                </ReplyWrapper>
             )}
         </PostblockWrapper>
     );
