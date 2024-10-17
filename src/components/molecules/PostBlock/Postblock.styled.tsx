@@ -36,7 +36,7 @@ export const ActionButtons = styled.div`
 `;
 
 export const ReplyWrapper = styled.div`
-    margin-top: 1rem;
+    //margin-top: 1rem;
     border-top: 1px solid #ccc;
     padding-top: 1rem;
 
@@ -62,4 +62,5 @@ export const StyledPostBlocSectionHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
 `;

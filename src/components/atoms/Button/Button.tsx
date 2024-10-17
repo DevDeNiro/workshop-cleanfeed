@@ -9,6 +9,7 @@ export interface ButtonProps {
     logout?: boolean;
     label?: string;
     disabled?: boolean;
+    style?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
     hasPopup,
     expanded,
     logout,
+    style,
 }) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -27,6 +29,7 @@ const Button: React.FC<ButtonProps> = ({
             ref={buttonRef}
             onClick={handleClick}
             className={logout ? "danger" : "secondary"}
+            style={style}
         >
             {children}
         </StyledButton>

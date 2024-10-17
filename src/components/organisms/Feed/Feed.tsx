@@ -16,6 +16,7 @@ import FilteredResult, {
     FilteredResultItem,
 } from "@organisms/Feed/FilteredResult.tsx";
 import Button from "@atoms/Button/Button.tsx";
+import { useBreakpoint } from "@/hooks";
 
 type FeedProps = {
     posts: Post[];
@@ -28,6 +29,15 @@ const Feed: FC<FeedProps> = ({
     showFilteredResults,
     loadingFilteredResults,
 }) => {
+    const { isMobile, isTablet, isDesktop } = useBreakpoint();
+
+    const buttonPadding = isMobile
+        ? "6px 12px"
+        : isTablet
+          ? "8px 16px"
+          : "10px 20px";
+    const fontSize = isMobile ? "11px" : isTablet ? "13px" : "15px";
+
     const filteredResults = mockFilteredResults;
     const [selectedComments, setSelectedComments] = useState<string[]>([]);
 
@@ -80,9 +90,14 @@ const Feed: FC<FeedProps> = ({
 
     return (
         <ComparisonWrapper>
-            <TweetSection>
+            <TweetSection
+                style={{
+                    flex: showFilteredResults && isDesktop ? "0.6" : "1",
+                    fontSize,
+                }}
+            >
                 <StyledTweetSectionHeader>
-                    <h2>
+                    <h2 style={{ fontSize }}>
                         <FormattedMessage
                             id={"app.feed.retrieve-tweets"}
                             defaultMessage={"Tweets Récupérés"}
@@ -90,10 +105,18 @@ const Feed: FC<FeedProps> = ({
                     </h2>
 
                     <div style={{ display: "flex", gap: "10px" }}>
-                        <Button handleClick={handleBulkDelete} logout={true}>
+                        <Button
+                            handleClick={handleBulkDelete}
+                            logout={true}
+                            style={{ padding: buttonPadding }}
+                        >
                             Supprimer Sélectionnés
                         </Button>
-                        <Button handleClick={handleBulkReport} logout={true}>
+                        <Button
+                            handleClick={handleBulkReport}
+                            logout={true}
+                            style={{ padding: buttonPadding }}
+                        >
                             Signaler Sélectionnés
                         </Button>
                     </div>
@@ -117,7 +140,11 @@ const Feed: FC<FeedProps> = ({
             </TweetSection>
 
             {showFilteredResults && (
-                <FilteredResultWrapper>
+                <FilteredResultWrapper
+                    style={{
+                        flex: isDesktop ? "0.4" : "1",
+                    }}
+                >
                     <h2 style={{ margin: "0 0 13px 3px" }}>
                         <FormattedMessage
                             id={"app.search.filtered-tweets"}
