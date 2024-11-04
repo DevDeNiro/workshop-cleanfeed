@@ -1,21 +1,21 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "module": "commonjs",
-        "noImplicitReturns": true,
-        "noUnusedLocals": true,
-        "rootDir": "./src",
-        "outDir": "lib",
-        "sourceMap": true,
-        "strict": true,
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "rootDir": "./src",
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
 
-        /* Bundler mode */
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": false,
-        "esModuleInterop": false,
-        "moduleDetection": "force",
-        "composite": true
-    },
-    "compileOnSave": true,
-    "include": ["src"]
+    /* Bundler mode */
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": false,
+    "esModuleInterop": false,
+    "moduleDetection": "force",
+    "composite": true
+  },
+  "compileOnSave": true,
+  "include": ["src"]
 }
