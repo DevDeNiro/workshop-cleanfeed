@@ -1,18 +1,19 @@
-import { AuthContextProps } from "react-oidc-context";
 import { FC } from "react";
 import { Navigate } from "react-router-dom";
 import { LoginWrapper } from "@pages/Login/Login.styled.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/store.ts";
 
-interface LoginProps {
-    auth: AuthContextProps;
-}
+const Login: FC = () => {
+  const { user, isLoggedIn } = useSelector(
+    (state: RootState) => state.firebase,
+  );
 
-const Login: FC<LoginProps> = ({ auth }) => {
-    if (auth.isLoading && !auth.isAuthenticated) {
-        return <LoginWrapper>Logging in...</LoginWrapper>;
-    }
+  if (user && !isLoggedIn) {
+    return <LoginWrapper>Logging in...</LoginWrapper>;
+  }
 
-    return <Navigate to={"/"} />;
+  return <Navigate to={"/"} />;
 };
 
 export default Login;

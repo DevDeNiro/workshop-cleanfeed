@@ -6,11 +6,11 @@
         "module": "ESNext",
         "skipLibCheck": true,
         /* Bundler options */
-        "moduleResolution": "bundler",
+        "moduleResolution": "node",
         "allowImportingTsExtensions": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": false,
+        "noEmit": true,
         "jsx": "react-jsx",
         /* Strict type-checking options */
         "strict": true,
@@ -18,7 +18,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
+        "allowSyntheticDefaultImports": true,
         "types": ["vite/client"],
+        "baseUrl": "./",
         "paths": {
             "@/*": ["./src/*"],
             "@api/*": ["./src/api/*"],
@@ -33,13 +35,11 @@
             "@pages/*": ["./src/components/pages/*"]
         }
     },
-    "include": ["src"],
-    "references": [
-        {
-            "path": "./tsconfig.app.json"
-        },
-        {
-            "path": "./tsconfig.node.json"
-        }
-    ]
+    "include": ["src"]
+    /*
+        "references": [
+            {"path": "./tsconfig.app.json"},
+            {"path": "./tsconfig.node.json"}
+        ]
+    */
 }

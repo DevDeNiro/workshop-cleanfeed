@@ -1,10 +1,9 @@
 // External imports
 import {
-    FormattedMessage,
-    injectIntl,
-    WrappedComponentProps,
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps,
 } from "react-intl";
-import { User } from "firebase/auth";
 import { ChangeEvent, FC, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,105 +15,109 @@ import NavItem from "@components/atoms/NavItem/NavItem.tsx";
 import Button from "@components/atoms/Button/Button.tsx";
 import { selectLanguage } from "@redux/intl/intlSlice.ts";
 import { selectOptions } from "@utils/selectTranslationValues.ts";
+import { SerializedUser } from "@redux/firebase/authSlice.ts";
 
 export interface VerticalMenuProps extends WrappedComponentProps {
-    onMenuItemClick: () => void;
-    handleLogin: () => void;
-    handleLogout: () => void;
-    isAuthenticated: boolean;
-    user?: User | null;
-    className?: string;
+  handleLogin: () => void;
+  handleLogout: () => void;
+  isAuthenticated: boolean;
+  user?: SerializedUser | null;
+  className?: string;
+  handleShowMenu?: () => void;
+  onMenuItemClick?: () => void;
 }
 
 const VerticalMenu: FC<VerticalMenuProps> = ({
-    onMenuItemClick,
-    handleLogin,
-    handleLogout,
-    isAuthenticated,
-    intl,
-    user,
-    className,
+  handleLogin,
+  handleLogout,
+  isAuthenticated,
+  intl,
+  user,
+  className,
+  onMenuItemClick,
 }) => {
-    const verticalMenuRef = useRef<HTMLDivElement>(null);
+  const verticalMenuRef = useRef<HTMLDivElement>(null);
 
-    const intlState = useSelector((state: RootState) => state.intl);
-    const menuState = useSelector(
-        (state: RootState) => state.menu.showVerticalMenu,
-    );
+  const intlState = useSelector((state: RootState) => state.intl);
+  const menuState = useSelector(
+    (state: RootState) => state.menu.showVerticalMenu,
+  );
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    return (
-        <VerticalMenuStyled className={className} ref={verticalMenuRef}>
-            <div className="vertical-menu-content">
-                <FormattedMessage
-                    id={"app.header.title"}
-                    values={{
-                        userStatus: intl.formatMessage({
-                            id: user
-                                ? "app.header.status.loggedIn"
-                                : "app.header.status.loggedOut",
-                            defaultMessage: user
-                                ? "Logged in as {name}"
-                                : "Logged out",
-                        }),
-                    }}
-                />
+  return (
+    <VerticalMenuStyled className={className ?? ""} ref={verticalMenuRef}>
+      <div className="vertical-menu-content">
+        <FormattedMessage
+          id={"app.header.title"}
+          values={{
+            userStatus: intl.formatMessage({
+              id: user
+                ? "app.header.status.loggedIn"
+                : "app.header.status.loggedOut",
+              defaultMessage: user ? "Logged in as {name}" : "Logged out",
+            }),
+          }}
+        />
 
-                <NavItem
-                    translationKey={"app.header.home"}
-                    linkTo={"/"}
-                    onClick={onMenuItemClick}
-                />
-                {user && (
-                    <NavItem
-                        translationKey={"app.header.profile"}
-                        linkTo={"/profile"}
-                        onClick={onMenuItemClick}
-                    />
-                )}
-                {/* Add button to Log in and Log out*/}
-                {!user && !isAuthenticated && (
-                    <Button
-                        hasPopup={true}
-                        expanded={menuState.showVerticalMenu}
-                        logout={false}
-                        handleClick={() => {
-                            handleLogin();
-                            onMenuItemClick();
-                        }}
-                    >
-                        <FormattedMessage
-                            id={"app.header.login"}
-                            values={{ loginMode: "Twitter" }}
-                        />
-                    </Button>
-                )}
-                {/* Add Button to Log out if auth */}
-                {user && (
-                    <Button
-                        hasPopup={false}
-                        expanded={menuState.showVerticalMenu}
-                        logout={true}
-                        handleClick={() => {
-                            handleLogout();
-                            onMenuItemClick();
-                        }}
-                    >
-                        <FormattedMessage id={"app.header.logout"} />
-                    </Button>
-                )}
+        <NavItem
+          translationKey={"app.header.home"}
+          linkTo={"/"}
+          onNavItemClick={onMenuItemClick}
+        />
+        {user && (
+          <NavItem
+            translationKey={"app.header.profile"}
+            linkTo={"/profile"}
+            onNavItemClick={onMenuItemClick}
+          />
+        )}
+        {/* Add button to Log in and Log out*/}
+        {!user && !isAuthenticated && (
+          <Button
+            hasPopup={true}
+            expanded={menuState}
+            logout={false}
+            handleClick={() => {
+              handleLogin();
+              if (onMenuItemClick) {
+                onMenuItemClick();
+              }
+            }}
+          >
+            <FormattedMessage
+              id={"app.header.login"}
+              values={{ loginMode: "Twitter" }}
+            />
+          </Button>
+        )}
+        {/* Add Button to Log out if auth */}
+        {user && (
+          <Button
+            hasPopup={false}
+            expanded={menuState}
+            logout={true}
+            handleClick={() => {
+              handleLogout();
+              if (onMenuItemClick) {
+                onMenuItemClick();
+              }
+            }}
+          >
+            <FormattedMessage id={"app.header.logout"} />
+          </Button>
+        )}
 
-                <Select
-                    onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                        dispatch(selectLanguage(event))
-                    }
-                    options={selectOptions}
-                    value={intlState.locale}
-                ></Select>
-            </div>
-        </VerticalMenuStyled>
-    );
+        <Select
+          onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+            dispatch(selectLanguage(event))
+          }
+          options={selectOptions}
+          value={intlState.locale}
+        ></Select>
+      </div>
+    </VerticalMenuStyled>
+  );
 };
 // react-refresh/only-export-components
 const EnhancedVerticalMenu = injectIntl(VerticalMenu);

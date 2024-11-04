@@ -1,0 +1,21 @@
+Les lambda au sein de firebase ne prennent en charge que commonJs et non ES6
+
+# dependencies
+pnpm add @google-cloud/functions-framework
+pnpm add -D firebase-tools
+Voir pour l'utilisation de : "firebase-functions-test": "^3.3.0",
+
+# commands firebase - functions
+firebase login
+firebase init functions
+firebase deploy --only functions
+
+tree -I 'node_modules'
+
+# Gestion des secrets
+firebase functions:config:set twitter.consumer_key="VOTRE_CONSUMER_KEY" twitter.consumer_secret="VOTRE_CONSUMER_SECRET"
+firebase functions:config:get
+firebase functions:config:unset twitter.consumer_key twitter.consumer_secret
+
+# build typescript
+tsc -b
